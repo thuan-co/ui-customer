@@ -1,13 +1,51 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* My custom CSS */
+@layer components {
+  
+  @media screen and (min-width: 1300px) {
+    
+    .theme-tet-header-left::before {
+      background-image: url(//cdn.tgdd.vn/mwgcart/mwg-site/ContentMwg/images/newyear2023/Background/hoa-mai.png);
+      left: 0;
+      top: 0;
+      background-repeat: no-repeat;
+      content: '';
+      z-index: 1000;
+      width: 95px;
+      height: 119px;
+      background-size: 100%;
+      position: absolute;
+      pointer-events: none;
+    }}
+    
+  @media screen and (min-width: 1300px) {
+      .theme-tet-header-right::after {
+        background-image: url(//cdn.tgdd.vn/mwgcart/mwg-site/ContentMwg/images/newyear2023/Background/hoa-dao.png);
+        top: 0;
+        right:0;
+        background-repeat: no-repeat;
+        content: '';
+        height: 119px;
+        width: 95px;
+        z-index: 1000;
+        pointer-events: none;
+        position: absolute;
+        background-size: 100%;
+      }
+    }
+  .nav-user-login::after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    left: calc(50% - 8px);
+    border-bottom: 8px solid #d9d9d9;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom-color: #fff;
+  }
 }
