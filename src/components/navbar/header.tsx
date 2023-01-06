@@ -27,9 +27,28 @@ function LoginDropDown() {
     )
 }
 
+function MangaAccDropDown() {
+
+    return(
+        <div className='px-3 py-1 w-[12rem] nav-user-login'>
+            <ul className='flex flex-col '>
+                <li className='my-3'>
+                    <span>Cài đặt tài khoản</span>
+                </li>
+                <li className='mb-3'>
+                    <span>Điều khoản và dịch vụ</span>
+                </li>
+                <li className='mb-3'>
+                    <span>Đăng xuất</span>
+                </li>
+            </ul>
+        </div>
+    )
+}
+
 export default function Header() {
 
-    const [isAuth, setIsAuth] = useState<Boolean | null>(false)
+    const [isAuth, setIsAuth] = useState<Boolean | null>(true)
 
     const [isClick, setIsClick] = useState<Boolean | null>(false)
 
@@ -88,8 +107,8 @@ export default function Header() {
                         <span className='text-sm w-20'>Tài khoản</span>
                     </div>
                     {(isClick) ?
-                        <div className='absolute w-full z-10 mt-2 bg-neutral-50'>
-                            {(isAuth) ? <></> : <LoginDropDown />}
+                        <div className='absolute min-w-full z-10 mt-2 bg-neutral-50 drop-shadow-xl'>
+                            {(isAuth) ? <MangaAccDropDown /> : <LoginDropDown />}
                         </div>
                         : null
                     }
