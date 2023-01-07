@@ -49,3 +49,31 @@
     border-bottom-color: #fff;
   }
 }
+body {
+  background-color: #f3f3f3;
+}
+body::before {
+  content: '';
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/dotted-hulling-326801.appspot.com/o/shop%20tech%2Fmua-lan-left.png?alt=media&token=e9095473-85fe-483b-a06c-d35f63ce038f');
+  position: fixed;
+  background-size: 100%;
+  width: 8%;
+  height: 272px;
+  top: 110px;
+  object-fit: contain;
+  z-index: -3;
+  background-repeat: no-repeat;
+} 
+body::after {
+  content: '';
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/dotted-hulling-326801.appspot.com/o/shop%20tech%2Fbg-banh-chung-right.png?alt=media&token=b2356906-d08e-4935-a21f-2107a3c13336');
+  position: fixed;
+  background-size: 100%;
+  width: 8%;
+  height: 272px;
+  top: 110px;
+  right: 0;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  z-index: -3;
+}
