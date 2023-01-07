@@ -1,13 +1,79 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* My custom CSS */
+@layer components {
+  
+  @media screen and (min-width: 1300px) {
+    
+    .theme-tet-header-left::before {
+      background-image: url(//cdn.tgdd.vn/mwgcart/mwg-site/ContentMwg/images/newyear2023/Background/hoa-mai.png);
+      left: 0;
+      top: 0;
+      background-repeat: no-repeat;
+      content: '';
+      z-index: 1000;
+      width: 95px;
+      height: 119px;
+      background-size: 100%;
+      position: absolute;
+      pointer-events: none;
+    }}
+    
+  @media screen and (min-width: 1300px) {
+      .theme-tet-header-right::after {
+        background-image: url(//cdn.tgdd.vn/mwgcart/mwg-site/ContentMwg/images/newyear2023/Background/hoa-dao.png);
+        top: 0;
+        right:0;
+        background-repeat: no-repeat;
+        content: '';
+        height: 119px;
+        width: 95px;
+        z-index: 1000;
+        pointer-events: none;
+        position: absolute;
+        background-size: 100%;
+      }
+    }
+  .nav-user-login::after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    left: calc(50% - 8px);
+    border-bottom: 8px solid #d9d9d9;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom-color: #fff;
+  }
+}
+body {
+  background-color: #f3f3f3;
+}
+body::before {
+  content: '';
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/dotted-hulling-326801.appspot.com/o/shop%20tech%2Fmua-lan-left.png?alt=media&token=e9095473-85fe-483b-a06c-d35f63ce038f');
+  position: fixed;
+  background-size: 100%;
+  width: 8%;
+  height: 272px;
+  top: 110px;
+  object-fit: contain;
+  z-index: -3;
+  background-repeat: no-repeat;
+} 
+body::after {
+  content: '';
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/dotted-hulling-326801.appspot.com/o/shop%20tech%2Fbg-banh-chung-right.png?alt=media&token=b2356906-d08e-4935-a21f-2107a3c13336');
+  position: fixed;
+  background-size: 100%;
+  width: 8%;
+  height: 272px;
+  top: 110px;
+  right: 0;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  z-index: -3;
 }
