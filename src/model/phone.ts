@@ -31,4 +31,16 @@ export const fakePhoneCard:PhoneView[] = [
         price: '4.890.000',
         avt: 'https://cdn.tgdd.vn/Products/Images/42/274359/TimerThumb/samsung-galaxy-a23-6gb-(12).jpg',
     },
+    {
+        id: '',
+        name: 'Samsung Galaxy A23 6GB',
+        price: '4.890.000',
+        avt: 'https://cdn.tgdd.vn/Products/Images/42/274359/TimerThumb/samsung-galaxy-a23-6gb-(12).jpg',
+    },
+    {
+        id: '',
+        name: 'Samsung Galaxy A23 6GB',
+        price: '4.890.000',
+        avt: 'https://cdn.tgdd.vn/Products/Images/42/274359/TimerThumb/samsung-galaxy-a23-6gb-(12).jpg',
+    },
 ]
