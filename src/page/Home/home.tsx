@@ -5,10 +5,10 @@ import Nav from "../../components/navbar/Navbar";
 export default function Home() {
     
     return (
-        <>
+        <section className="relative">
             <Nav />
             <Outlet />
             <Footer />
-        </>
+        </section>
     )
 }

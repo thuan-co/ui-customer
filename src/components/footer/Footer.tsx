@@ -3,7 +3,7 @@ import { about, intro, tel } from "./data";
 export default function Footer() {
 
     return(
-        <section className="w-full bg-white shadow-inner">
+        <section className="w-full relative bottom-0 bg-white shadow-inner">
             <div className="z-10 grid grid-cols-3 max-w-screen-xl mx-auto">
                 <ul className="grid grid-cols-1 font-normal p-5">
                     {

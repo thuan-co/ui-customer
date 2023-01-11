@@ -2,7 +2,7 @@ import { CateFeature, fakeFeature } from "./data"
 
 function CategoryItem( props:CateFeature ) {
     return (
-        <div className="w-24 relative flex justify-center bg-white">
+        <div className="w-24 relative flex justify-center bg-[#f3f3f3]">
             <a href="/" className=''>
                 <div className="flex justify-center">
                     <img src={props.img_url} alt="Ảnh danh mục" className="w-[60px] object-contain"/>
@@ -16,7 +16,7 @@ function CategoryItem( props:CateFeature ) {
 export default function Features() {
     
     return(
-        <div className="max-w-screen-xl mx-auto bg-white my-5 rounded-md p-3">
+        <div className="max-w-screen-xl mx-auto bg-[#f3f3f3] my-5 rounded-md p-3">
             <div>
                 <h3 className="uppercase font-bold text-base mb-3">Danh mục nổi bật</h3>
             </div>
