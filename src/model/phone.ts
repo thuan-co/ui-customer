@@ -6,6 +6,27 @@ export interface PhoneView {
     avt:string
 }
 
+export interface Option {
+    id: string
+    price: string
+    storage: string
+}
+
+export interface Component {
+    id: string
+    name: string
+    features: string
+}
+export interface PhoneViewDetails {
+    id: string
+    name: string
+    price: string
+    dimensionImage: string
+    slides: string[]
+    storages: Option[]
+    specs: Component[]
+}
+
 export const fakePhoneCard:PhoneView[] = [
     {
         id: '',

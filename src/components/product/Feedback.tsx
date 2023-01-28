@@ -43,7 +43,7 @@ export default function Feedback() {
 
     return (
         <div id="feedback-customer-product" className="box-border relative block bg-[#fff] font-bold text-xl rounded-md border-[#3a36364d] border-solid border-[1px] pb-3 px-4">
-            <p className="py-2">Đánh giá điện thoại `teen san pham`</p>
+            <p className="py-2">Đánh giá</p>
 
             <div id="feedback" className='relative mt-3 flex flex-row'>
 

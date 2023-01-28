@@ -2,13 +2,18 @@ import { Action, ThunkAction, configureStore, getDefaultMiddleware } from '@redu
 import authReducers from '../features/Auth/AuthSlice';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
+import phoneDetailsReducers from '../features/PhoneView/PhoneSlice';
+import { enableMapSet } from 'immer';
 
 const sagaMiddleware = createSagaMiddleware();
+
+enableMapSet();
 
 export const store = configureStore({
   reducer: {
     // counter: counterReducer,
     auth: authReducers,
+    phoneDetails: phoneDetailsReducers
   },
   middleware: (getDefaultMiddleware) =>  getDefaultMiddleware({
     serializableCheck: {
