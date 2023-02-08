@@ -2,12 +2,41 @@
 import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import '../index.css'
+// import '../index.css'
 import * as React from 'react';
+import { useAppDispatch } from '../../app/hooks';
+import { LoginDto, authActions } from '../../features/redux-saga/Auth/AuthSlice';
 ;
 export default function Login() {
 
+    // variables
     const [showPassword, setShowPassword] = React.useState(false);
+
+    const [login, setLogin] = React.useState<LoginDto>({
+        username: '',
+        password: '',
+    })
+
+    const dispatch = useAppDispatch()
+
+    /**
+     *  Dispatch action authorities information user inputted.
+     * @returns null
+     */
+    const handleClickLogin = () => {
+        
+        dispatch(authActions.authorityAccount(login))
+    }
+
+    /**
+     * Save info into state login
+     * @param event get data from ele input
+     */
+    const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const {value, name} = event.target
+        setLogin({...login, [name]:value})
+
+    }
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -20,7 +49,7 @@ export default function Login() {
         <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-lg">
                 <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
-                Logo website
+                    Logo website
                 </h1>
 
                 <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
@@ -38,7 +67,9 @@ export default function Login() {
                             <InputLabel htmlFor="customer-account">Tài khoản</InputLabel>
                             <OutlinedInput
                                 id="customer-account"
-                                type={showPassword ? 'text' : 'password'}
+                                name='username'
+                                value={login.username}
+                                onChange={onChangeInput}
                                 label="Tài khoản"
                             />
                         </FormControl>
@@ -49,6 +80,9 @@ export default function Login() {
                             <OutlinedInput
                                 id="customer-password"
                                 type={showPassword ? 'text' : 'password'}
+                                name='password'
+                                value={login.password}
+                                onChange={onChangeInput}
                                 endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
@@ -67,16 +101,16 @@ export default function Login() {
                     </div>
 
                     <Button
-                        // type="submit"
+                        onClick={handleClickLogin}
                         variant='contained'
                         className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
                     >
-                        Sign in
+                        Đăng nhập
                     </Button>
 
                     <p className="text-center text-sm text-gray-500">
                         No account?
-                        <a className="underline" href="">Sign up</a>
+                        <a className="underline" href="/">Đăng ký</a>
                     </p>
                 </Box>
             </div>
