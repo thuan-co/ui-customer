@@ -5,6 +5,7 @@ import App from "../App";
 import MainLayout from "../page/Home/MainLayout";
 import CustomRouter from "./CustomRouter";
 import Product from "../page/Product/Product";
+import Order from "../page/order/Order";
 
 export default function AppRouter() {
     return(
@@ -14,6 +15,7 @@ export default function AppRouter() {
                     <Route path="" index element={<MainLayout />} />
                     <Route path="login" element={<Login />} />
                     <Route path="product" element={<Product />} />
+                    <Route path="muahang" element={<Order />} />
                 </Route>
             </Routes>
         </CustomRouter>   

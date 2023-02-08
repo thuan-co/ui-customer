@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PhoneViewDetails } from "../../model/phone";
+import { PhoneViewDetails } from "../../../model/phone";
 
 const initialState:PhoneViewDetails = {
     id: '',

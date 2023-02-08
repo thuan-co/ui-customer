@@ -1,6 +1,6 @@
 import axios from "axios"
 import { GET, POST } from "../../constants/http/methodHttp"
-import { authActions } from "../Auth/AuthSlice"
+import { authActions } from "../redux-saga/Auth/AuthSlice"
 
 export default function LoginApi(endpoint: string, action: string, method:string, data:any) {
     const baseUrl = "http://localhost:8087/api/v1"
@@ -42,9 +42,8 @@ export default function LoginApi(endpoint: string, action: string, method:string
             if (error.response) {
 
                 const errorRes = error.response.data;
+                return [null, error.response.data]
             }
-            
-            return [null, error.response.data]
         })
     }
 }

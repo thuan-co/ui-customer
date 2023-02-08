@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { AccountDto } from "../../model/AuthLogin";
+import { AccountDto } from "../../../model/AuthLogin";
 
 export interface AuthAccount {
     accountDto: AccountDto,
@@ -38,7 +38,9 @@ const authSlice = createSlice({
 
             localStorage.setItem('access_token', tmp.accountDto.access_token)
             localStorage.setItem('refresh_token', tmp.accountDto.refresh_token)
-            
+
+            sessionStorage.setItem("email", tmp.accountDto.username)
+            sessionStorage.setItem("name", tmp.accountDto.name)
             return tmp;
         },
         logout(state) {

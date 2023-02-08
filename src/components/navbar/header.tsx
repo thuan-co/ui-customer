@@ -10,11 +10,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
-import { authActions } from '../../features/Auth/AuthSlice';
-
-type Prop = {
-
-}
+import { authActions } from '../../features/redux-saga/Auth/AuthSlice';
 
 function LoginDropDown() {
     return(
@@ -64,10 +60,19 @@ export default function Header() {
     // const [isAuth, setIsAuth] = useState<Boolean | null>(false)
     const selector = useAppSelector((state:RootState)=>state.auth)
 
-    const isAuth = selector.isAuth;
+    const name = sessionStorage.getItem('name');
+    let isAuth:boolean = false
+    let fullName:string[] = []
+    let lastName:string | undefined
 
-    const fullName:string[] = selector.accountDto.name.split(' ')
-    const lastName = fullName.at(fullName.length - 1)
+    if (name !== null && name !== undefined) {
+        isAuth = true
+        fullName = name.split(' ')
+        lastName = fullName.at(fullName.length - 1)
+    }
+    
+    // const fullName:string[] | undefined = sessionStorage.getItem("name")?.split(' ')
+    // const lastName = fullName!.at(fullName!.length - 1)
 
     const [isClick, setIsClick] = useState<Boolean | null>(false)
 

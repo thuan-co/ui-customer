@@ -1,65 +1,18 @@
-
-import Slider from 'react-animated-slider-2'
-import Policy from '../../components/product/Policy'
-import { fakePolicyPhone } from './data'
-import Feedback from '../../components/product/Feedback'
 import { Button } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { PhoneViewDetails } from '../../model/phone'
+import Slider from 'react-animated-slider-2'
 import { useAppSelector } from '../../app/hooks'
-// import 'react-animated-slider-2/build/horizontal.css';
+import { OrderItem } from '../../components/order/data'
+import Feedback from '../../components/product/Feedback'
+import Policy from '../../components/product/Policy'
+import { PhoneViewDetails } from '../../model/phone'
+import { customHistory } from '../../router/CustomRouter'
 
-type Spec = {
-    name:string,
-    content:string
-}
-
-const fake:string[] = [
-    'https://cdn.tgdd.vn/Products/Images/42/245545/Slider/iphone-14-plus-thumb-youtube-1020x570.jpg',
-    'https://cdn.tgdd.vn/Products/Images/42/245545/Slider/iphone-14-plus638028259532774052.jpg',
-    'https://cdn.tgdd.vn/Products/Images/42/245545/Slider/iphone-14-plus638028259534574048.jpg',
-    'https://cdn.tgdd.vn/Products/Images/42/245545/Slider/iphone-14-plus638028259535623909.jpg',
-]
-
-
-const fakeSpec: Spec[] = [
-    {
-        name: "Màn hình",
-        content: " Chính: Dynamic AMOLED 2X, Phụ: Super AMOLED Chính 6.7\" & Phụ 1.9\" Full HD+ ",
-    },
-    {
-        name: "Hệ điều hành",
-        content: "Android 12",
-    },
-    {
-        name: "Camera sau",
-        content: "2 camera 12 MP",
-    },
-    {
-        name: "Camera trước",
-        content: "10 MP",
-    },
-    {
-        name: "Chip",
-        content: "Snapdragon 8+ Gen 1",
-    },
-    {
-        name: "RAM",
-        content: "8 GB",
-    },
-    {
-        name: "Dung lượng lưu trữ",
-        content: "128 GB",
-    },
-    {
-        name: "Pin, Sạc",
-        content: " 3700 mAh 25 W ",
-    },
-] 
 
 export default function Product() {
 
     const selector = useAppSelector((state)=>state.phoneDetails)
+
     const initialItem:PhoneViewDetails = {
         id: '',
         name: '',
@@ -69,6 +22,19 @@ export default function Product() {
         storages: [],
         specs: [],
     }
+
+    const orderItem:OrderItem = {
+            deviceId: '', 
+            optionId:  '',
+            name: '',
+            price: '',
+            totalPrice: '',
+            quantity: 1,
+            avt: '',
+    }
+
+    const [order, setOrder] = useState<OrderItem>(orderItem);
+
     const [item, setItem] = useState<PhoneViewDetails>(initialItem)
 
     const formatPrice = (price:string) => {
@@ -95,16 +61,54 @@ export default function Product() {
     }
     
     useEffect(() => {
-        setItem(selector)
-    }, )
 
+        setItem(selector)
+        let test:OrderItem = {
+            deviceId: selector.id, 
+            optionId:  '',
+            name: selector.name,
+            price: selector.price,
+            totalPrice: '',
+            quantity: 1,
+            avt: '',
+        }
+        selector.storages.forEach(x => {
+            if (x.price === null) {
+                console.log("vo dc ne");
+                
+                // orderItem.optionId = x.id
+                test.optionId = x.id
+
+                setOrder(test)
+            }
+        })
+
+        console.log('thay đổi điện thoại ', selector.name)
+    },[selector])
+
+    // useEffect(() => {
+    //     orderItem
+    // },[])
+
+    const handleClickPurchase = () => {
+
+        const isLogin = Boolean(sessionStorage.getItem("email"))
+        if (isLogin === false) {
+            customHistory.push('/login',item)
+            // console.log("History: ", customHistory)
+        }
+        else {  
+            customHistory.push('/muahang', order)
+        }
+    }
     return (
         <section className="relative max-w-screen-xl w-full mx-auto grid grid-rows-2 my-20">
 
             <div className="absolute flex items-center border-solid border-b-2 w-full h-16 -top-20 bg-[#fff]">
                 <div className='font-semibold text-2xl'>
                     {/* <span>Samsung Galaxy Z Flip4 128GB</span> */}
-                    <span>{item.name}</span>
+                    <span>Điện thoại {item.name}
+                    </span>
                 </div>
             </div>
 
@@ -143,13 +147,16 @@ export default function Product() {
                             <div className="-m-0.5 mb-4 flex flex-row flex-wrap">
                             {
                             item.storages.map((value, index) => (
-
+                                
                                 <label key={index} htmlFor={'storage' + index} className="cursor-pointer p-0.5">
                                     <input
                                         type="radio"
                                         name="storage"
+                                        value={value.id}
+                                        
+                                        onChange={(event)=>{setOrder({...order, 'optionId':event.target.value})}}
                                         id={'storage' + index}
-                                        defaultChecked={(value.price == null) ? true : false}
+                                        checked={(value.price == null) ? true : false}
                                         className="sr-only peer"
                                     />
 
@@ -164,12 +171,16 @@ export default function Product() {
                             </div>
                         </div>
                     </div>
-                    
 
                     <p className='text-[#eb5757] text-lg font-bold'>{formatPrice(item.price)}₫</p>
 
                     <div className='mt-4 relative'>
-                        <Button sx={{width: '100%', backgroundColor:'#ec7310fb', marginBottom:'10px'}} color='primary' variant='contained'>Mua ngay</Button>
+                        <Button sx={{width: '100%', backgroundColor:'#ec7310fb', marginBottom:'10px'}} color='primary' variant='contained'
+                            onClick={handleClickPurchase}
+                        >
+                            Mua ngay
+                        </Button>
+
                         <Button variant='contained' sx={{width: '100%'}} color='success'>Thêm vào giỏ hàng</Button>
                     </div>
 

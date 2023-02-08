@@ -1,11 +1,11 @@
 import {call, delay, fork, put, take, takeLatest} from 'redux-saga/effects'
 import { LoginDto, authActions } from './AuthSlice'
 import { PayloadAction } from '@reduxjs/toolkit'
-import LoginApi from '../Api/LoginApi'
-import { POST } from '../../constants/http/methodHttp'
+import LoginApi from '../../Api/LoginApi'
+import { POST } from '../../../constants/http/methodHttp'
 import axios from 'axios'
-import { AccountDto } from '../../model/AuthLogin'
-import { customHistory } from '../../router/CustomRouter'
+import { AccountDto } from '../../../model/AuthLogin'
+import { customHistory } from '../../../router/CustomRouter'
 
 // function fake(data:any) {
 //     console.log("Data dispatch: ", data)
@@ -35,7 +35,8 @@ function* handleMakeAuth(action:PayloadAction<LoginDto>) {
 
             // Login successful
             yield put(authActions.authSuccessAccount(tmp))
-            customHistory.push('/')
+            // customHistory.push('/')
+            customHistory.back()
         }
     
         // Tài khoản chưa tồn tại - Account not existed

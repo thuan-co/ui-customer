@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
-import { phoneDetailsActions } from "../../features/PhoneView/PhoneSlice";
+import { phoneDetailsActions } from "../../features/redux-saga/PhoneView/PhoneSlice";
 import { PhoneView } from "../../model/phone";
 
 export default function PhoneCard(props:PhoneView) {
@@ -8,7 +8,8 @@ export default function PhoneCard(props:PhoneView) {
     const dispatch = useAppDispatch()
 
     const handleClickCard = () => {
-        dispatch(phoneDetailsActions.fetchPhoneById(455))
+        sessionStorage.setItem("avt", props.avt)
+        dispatch(phoneDetailsActions.fetchPhoneById(parseInt(props.id)))
     }
     return (
         <div className="w-[13rem] rounded-md shadow-lg bg-white relative py-3 px-[10px]" >
