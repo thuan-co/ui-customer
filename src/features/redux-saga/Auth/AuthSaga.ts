@@ -7,16 +7,20 @@ import axios from 'axios'
 import { AccountDto } from '../../../model/AuthLogin'
 import { customHistory } from '../../../router/CustomRouter'
 
-// function fake(data:any) {
-//     console.log("Data dispatch: ", data)
-// }
-
+/**
+ * This interface type error returned when call API
+ */
 interface AuthError {
     status: string,
     timestamp: string,
     message: string,
 }
 
+/**
+ * Checking type of error
+ * @param obj data needed check
+ * @returns true or false
+ */
 function instanceOfAuthError(obj: any): obj is AuthError {
     return 'timestamp' in obj && 'status' in obj && 'message' in obj
 }
@@ -28,7 +32,7 @@ function instanceOfAuthError(obj: any): obj is AuthError {
 function* handleMakeAuth(action:PayloadAction<LoginDto>) {
     
     try {
-        const [result, error] : any[] =yield call(LoginApi, '/login', action.type, POST,action.payload)
+        const [result, error] : any[] = yield call(LoginApi, '/login', action.type, POST,action.payload)
         
         if (result) {
             const tmp:AccountDto = {...result}
@@ -58,6 +62,9 @@ function* handleMakeAuth(action:PayloadAction<LoginDto>) {
     
 }
 
+/**
+ * Logic log-out, not yet completed
+ */
 function* handleLogoutAccount() {
     
     localStorage.removeItem('access_token')
@@ -66,6 +73,9 @@ function* handleLogoutAccount() {
     customHistory.push('/')
 }
 
+/**
+ * Tracking actions dispatched
+ */
 function* workerMakeAuth() {
 
     while (true) {
@@ -81,6 +91,9 @@ function* workerMakeAuth() {
     }
 }
 
+/**
+ * Saga responsibility for authentication account (log-in and log-out)
+ */
 export function* watcherMakeAuth() {
     yield fork(workerMakeAuth)
 }

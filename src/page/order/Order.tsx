@@ -1,15 +1,14 @@
 // @flow
-import React, { useEffect, useRef, useState } from 'react';
+import { Button, TextField } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useAppDispatch } from '../../app/hooks';
+import SelectAddress from '../../components/address/selected';
 import { CheckOut } from '../../components/order/Checkout';
 import { OrderItem } from '../../components/order/data';
 import Payment from '../../components/payment/payment';
-import SelectAddress from '../../components/address/selected';
-import { AddressDto, CustomerDto, ItemDto, OrderDto } from '../../model/other';
-import { Button, TextField } from '@mui/material';
-import { useAppDispatch } from '../../app/hooks';
 import { orderPhoneActions } from '../../features/redux-saga/Order/orderSlice';
+import { AddressDto, CustomerDto, ItemDto, OrderDto } from '../../model/other';
 import { customHistory } from '../../router/CustomRouter';
-import { stat } from 'fs';
 
 export default function Order() {
 
@@ -59,14 +58,6 @@ export default function Order() {
         }
         let items:ItemDto[] = [item]
 
-        
-
-        console.log("Items: ", items)
-
-        // total price (tam thoi - temptable)
-        // setOrder({...order, 'totalPrice':orderItem.totalPrice})
-
-
         let req:OrderDto = {
             id: '',
             createAt: new Date(),
@@ -77,7 +68,6 @@ export default function Order() {
             address: address
         } 
 
-        console.log("Data order: ", req)
         dispatch(orderPhoneActions.makeOrder(req))
     }
 
@@ -120,10 +110,7 @@ export default function Order() {
                     value={customer.phoneNumber}
                     onChange={(event) => {
                         const {value, name} = event.target
-                        // const isNum = Boolean(value.match('[0-9]'))
-                        // if (isNum) {
-                            setCustomer({...customer, [name]: value})
-                        // }
+                        setCustomer({...customer, [name]: value})
                     }}
                     />
                 </div>

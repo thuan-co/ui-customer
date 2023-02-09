@@ -74,21 +74,14 @@ export default function Product() {
         }
         selector.storages.forEach(x => {
             if (x.price === null) {
-                console.log("vo dc ne");
                 
-                // orderItem.optionId = x.id
                 test.optionId = x.id
 
                 setOrder(test)
             }
         })
 
-        console.log('thay đổi điện thoại ', selector.name)
     },[selector])
-
-    // useEffect(() => {
-    //     orderItem
-    // },[])
 
     const handleClickPurchase = () => {
 

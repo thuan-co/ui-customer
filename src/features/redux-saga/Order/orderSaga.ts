@@ -11,6 +11,7 @@ function* handleMakingOrder(action:PayloadAction<OrderDto>) {
     if (result) {
         yield put(orderPhoneActions.makeOrderSuccessful(result.id))
     }
+    // TODO: catching errors 
 }
 
 function* workerMakingOrder() {
@@ -18,6 +19,9 @@ function* workerMakingOrder() {
     yield takeLatest(orderPhoneActions.makeOrder, handleMakingOrder)
 }
 
+/**
+ * Saga for ordering a item
+ */
 export function* watcherMakeOrder() {
     yield fork(workerMakingOrder);
 }

@@ -2,7 +2,9 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { City } from "../../../model/other";
 
 const initialState: City[] = []
-
+/**
+ * Getting all cities
+ */
 const citySlice = createSlice({
     name: 'city',
     initialState,
