@@ -1,7 +1,11 @@
-# Getting Started with Create React App
+# Giao diện khách hàng (UI customer)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+## Khái quát - Overview
+Giao diện sử dụng công nghệ - Technologies: React Typescript, Redux Toolkit (RTK): quản lý state và cập nhật các component (manages states and updates components).
+Thư viện - Library: Material-UI, TailwindCSS, Redux-saga,...
 
+**Lưu ý:**
+- Chưa hoàn thiện Responsive (not yet completed Responsive)
 ## Available Scripts
 
 In the project directory, you can run:
