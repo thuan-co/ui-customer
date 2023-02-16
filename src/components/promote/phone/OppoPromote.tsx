@@ -23,7 +23,7 @@ export function OppoPromote() {
 
     return (
 
-        <div className="max-w-[1200px] mx-auto bg-[#00a63b] rounded-[14px] py-2">
+        <div className="max-w-[1200px] mx-auto bg-[#00a63b] rounded-[14px] py-2 my-3">
             <p className="uppercase text-center text-[#fff] tracking-wide text-5xl font-semibold">tuần lễ Oppo</p>
 
             {/* Advertising - Quảng cáo */}

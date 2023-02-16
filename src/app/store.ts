@@ -1,15 +1,15 @@
-import { Action, ThunkAction, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import authReducers from '../features/redux-saga/Auth/AuthSlice';
-import createSagaMiddleware from 'redux-saga';
-import rootSaga from './rootSaga';
-import phoneDetailsReducers from '../features/redux-saga/PhoneView/PhoneSlice';
+import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit';
 import { enableMapSet } from 'immer';
+import createSagaMiddleware from 'redux-saga';
 import cityReducers from '../features/redux-saga/Address/AddressSlice';
-import districtReducers from '../features/redux-saga/Address/DistrictSlice';
 import communeReducers from '../features/redux-saga/Address/CommuneSlice';
-import { persistReducer, persistStore } from 'redux-persist';
+import districtReducers from '../features/redux-saga/Address/DistrictSlice';
+import authReducers from '../features/redux-saga/Auth/AuthSlice';
+import historyReducers from '../features/redux-saga/Order/historySlice';
 import orderPhoneReducers from '../features/redux-saga/Order/orderSlice';
 import phoneCardReducers from '../features/redux-saga/PhoneView/PhoneCardSlice';
+import phoneDetailsReducers from '../features/redux-saga/PhoneView/PhoneSlice';
+import rootSaga from './rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -33,6 +33,7 @@ export const store = configureStore({
     commune: communeReducers,
     orderPhone: orderPhoneReducers,
     oppoPromote: phoneCardReducers,
+    orderedHistory: historyReducers,
   },
   middleware: (getDefaultMiddleware) =>  getDefaultMiddleware({
     serializableCheck: {

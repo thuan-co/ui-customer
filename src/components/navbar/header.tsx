@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
 import { authActions } from '../../features/redux-saga/Auth/AuthSlice';
+import { customHistory } from '../../router/CustomRouter';
 
 function LoginDropDown() {
     return(
@@ -70,9 +71,18 @@ export default function Header() {
         fullName = name.split(' ')
         lastName = fullName.at(fullName.length - 1)
     }
-    
-    // const fullName:string[] | undefined = sessionStorage.getItem("name")?.split(' ')
-    // const lastName = fullName!.at(fullName!.length - 1)
+
+    const handleClickOrderHistory = () => {
+        const isLogIn = Boolean(sessionStorage.getItem('email'))
+
+        if (!isLogIn) {
+            customHistory.push('/lichsu')
+            customHistory.push("/login")
+        }
+        else {
+            customHistory.push("/lichsu")
+        }
+    }
 
     const [isClick, setIsClick] = useState<Boolean | null>(false)
 
@@ -101,11 +111,11 @@ export default function Header() {
                     <span className='text-xs'>Cửa hàng</span>
                 </a>
 
-                <a href='/' id='btn-history-order' className='bg-amber-500 px-2 py-1 rounded-sm mx-6'>
+                <span onClick={handleClickOrderHistory} id='btn-history-order' className='bg-amber-500 px-2 py-1 rounded-sm mx-6 cursor-pointer'>
                     <span className='text-xs text-center'>
                         Lịch sử đơn hàng
                     </span>
-                </a>
+                </span>
 
                 <a href='/' id='btn-cart' className='bg-amber-500 px-2 py-1 rounded-sm mr-6'>
                     
