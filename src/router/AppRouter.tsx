@@ -1,11 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import MainLayout from "../page/Home/MainLayout";
 import Home from "../page/Home/home";
 import Login from "../page/Login/login";
-import App from "../App";
-import MainLayout from "../page/Home/MainLayout";
-import CustomRouter from "./CustomRouter";
 import Product from "../page/Product/Product";
+import History from "../page/history/History";
 import Order from "../page/order/Order";
+import CustomRouter from "./CustomRouter";
 
 export default function AppRouter() {
     return(
@@ -16,6 +16,7 @@ export default function AppRouter() {
                     <Route path="login" element={<Login />} />
                     <Route path="product" element={<Product />} />
                     <Route path="muahang" element={<Order />} />
+                    <Route path="lichsu" element={<History />} />
                 </Route>
             </Routes>
         </CustomRouter>   
