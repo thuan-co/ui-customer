@@ -3,7 +3,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { Box, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, useTheme } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import SkeletonTableHistory from "../../components/history/SkeletonTableHistory";
@@ -82,7 +82,6 @@ export default function History() {
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(5)
     const [loading, setLoading] = useState(true)
-    const test = useRef(result)
 
     const handle = () => {
         
@@ -114,16 +113,17 @@ export default function History() {
 
     useEffect(() => {
 
-        dispatch(historyActions.fetchHistory(sessionStorage.getItem('email') as string))
+        if(result.length === 0) {
+            dispatch(historyActions.fetchHistory(sessionStorage.getItem('email') as string))
+            handle()
+        }
 
-        // console.log("Dispatch was changed: result", result);
-        // if (result.length === 0) { handle() }
-    }, [dispatch])
+    })
 
-    useEffect(()=>{
-        console.log("hello world...", selector)
-        if (result.length === 0) { handle() }
-    }, [selector, result])
+    // useEffect(()=>{
+    //     // console.log("hello world...", selector)
+    //     if (result.length) { handle() }
+    // }, [result])
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - result.length) : 0;
